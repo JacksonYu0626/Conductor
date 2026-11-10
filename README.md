@@ -1,6 +1,6 @@
 # MPM Conductor
 
-Unified automation & reporting platform for MedPoint Management. Schedules Python scripts, delivers Tableau dashboard snapshots via email, and manages SharePoint file uploads — all from a single web interface.
+Unified automation & reporting platform for xxx company (updated with your corp). Schedules Python scripts, delivers Tableau dashboard snapshots via email, and manages SharePoint file uploads — all from a single web interface.
 
 ---
 
@@ -32,7 +32,7 @@ Unified automation & reporting platform for MedPoint Management. Schedules Pytho
 
 - Python 3.10+
 - Windows (required for script execution via subprocess)
-- SQL Server: MPMEDW1 / Audittables / MPMC schema
+- SQL Server: 
 - Tableau Server access with a Personal Access Token (PAT)
 
 ---
@@ -55,13 +55,13 @@ APP_SECRET_KEY=<long-random-string>
 DEV_MODE=false
 
 # ── Sign-in (Global Security) ─────────────────────────────────
-GS_BASE_URL=https://gsmodule.medpointmanagement.com
-GS_APP_ID=1045
+GS_BASE_URL=
+GS_APP_ID=
 
 # ── Database (SQL Server) ─────────────────────────────────────
-CONDUCTOR_DB_SERVER=MPMEDW1
-CONDUCTOR_DB_DATABASE=Audittables
-CONDUCTOR_DB_SCHEMA=MPMC
+CONDUCTOR_DB_SERVER=
+CONDUCTOR_DB_DATABASE=
+CONDUCTOR_DB_SCHEMA=
 CONDUCTOR_DB_DRIVER=ODBC Driver 17 for SQL Server
 
 # ── Local testing only (leave these out on the server) ────────
@@ -70,22 +70,22 @@ CONDUCTOR_DB_DRIVER=ODBC Driver 17 for SQL Server
 # SCHEDULER_ENABLED=false       # schedules don't fire while you test
 
 # ── Tableau Server ────────────────────────────────────────────
-TSC_SERVER_URL=https://mpmtableau.medpointmanagement.com
+TSC_SERVER_URL=
 TSC_SITE_ID=
 TSC_PAT_NAME=<your-pat-name>
 TSC_PAT_SECRET=<your-pat-secret>
 TSC_API_VERSION=3.19
 
 # ── MSSQL (employee search in email picker) ───────────────────
-MSSQL_SERVER=MPMEDW1
-MSSQL_DATABASE=mpm_edw
+MSSQL_SERVER=
+MSSQL_DATABASE=
 MSSQL_DRIVER={ODBC Driver 17 for SQL Server}
 
 # ── Email (Microsoft Graph API) ──────────────────────────────────────────────
 EMAIL_TENANT_ID=<azure-tenant-id>
 EMAIL_CLIENT_ID=<app-registration-client-id>
 EMAIL_CLIENT_SECRET=<app-registration-client-secret>
-EMAIL_SENDER=conductor@medpointmanagement.com
+EMAIL_SENDER=
 
 # ── SharePoint (Microsoft Graph API) ─────────────────────────────────────────
 SHAREPOINT_TENANT_ID=<azure-tenant-id>
@@ -122,7 +122,7 @@ SHAREPOINT_CLIENT_SECRET=<app-registration-client-secret>
 | `SHAREPOINT_CLIENT_SECRET` | App registration client secret for SharePoint |
 | `CONDUCTOR_SUMMARY_CACHE_SECONDS` | Optional. How long Summary numbers are cached (default `300`). The cache is cleared automatically whenever a run starts or finishes |
 | `CONDUCTOR_ANALYTICS_CACHE_SECONDS` | Optional. Same, for chart data (default `300`) |
-| `CONDUCTOR_URL` | Optional. Overrides the address used for the "Open in Conductor" button in sharing emails (default `https://conductor.medpointmanagement.com`, set in `routers/schedules.py`) |
+| `CONDUCTOR_URL` | Optional. Overrides the address used for the "Open in Conductor" button in sharing emails (default `https://conductor.example.com`, set in `routers/schedules.py`) |
 
 ### 3. Add scripts
 
@@ -153,7 +153,7 @@ The app starts on `http://localhost:8000` and opens in your browser.
 
 **Sign-in:** users sign in with their MPM Windows account through Global Security — the sign-in page detects the account and shows "Found: <name>". Users are added by IT in Global Security; there is no Add User page. Sign-in sessions last 72 hours and are tied to the user's email.
 
-**Local testing (SQLite):** set `DEV_MODE=true`, `DB_PATH=...` and `SCHEDULER_ENABLED=false`. A fresh SQLite database gets a default admin (`admin@medpointmanagement.com`). If you switch a test PC between SQLite and SQL Server, sign out and back in.
+**Local testing (SQLite):** set `DEV_MODE=true`, `DB_PATH=...` and `SCHEDULER_ENABLED=false`. A fresh SQLite database gets a default admin (`admin@example.com`). If you switch a test PC between SQLite and SQL Server, sign out and back in.
 
 **After deploying a new version:** restart the service, then press **Ctrl+F5** once in the browser.
 
@@ -229,13 +229,13 @@ Conductor/
 | Layer | Technology |
 |---|---|
 | Backend | FastAPI 0.111, SQLAlchemy 2.0, APScheduler 3.10 |
-| Database | SQL Server (MPMEDW1 / Audittables / MPMC schema) |
+| Database | SQL Server |
 | Frontend | React 18 + in-browser Babel (no build step), split into `static/app/*.jsx`; SVG charts (no chart library); bundled fonts |
 | Authentication | JWT via python-jose, bcrypt via passlib, Windows GS SSO |
 | Email | Microsoft Graph API via Azure AD service account (shared mailbox) |
 | Tableau | tableauserverclient, REST API, PAT authentication |
 | SharePoint | Microsoft Graph API via Azure AD app registration; SFTP source via paramiko |
-| Employee search | pyodbc → MPMEDW1 / mpm_edw |
+| Employee search | pyodbc|
 
 ---
 
@@ -285,7 +285,7 @@ SharePoint uploads use the **Microsoft Graph API** via an Azure AD app registrat
 
 ## Database
 
-SQL Server on `MPMEDW1 / Audittables` using the `MPMC` schema. The following tables are managed by the app:
+SQL Server on `server / db` using the `MPMC` schema. The following tables are managed by the app:
 
 | Table | Purpose |
 |---|---|
