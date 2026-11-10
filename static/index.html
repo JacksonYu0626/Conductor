@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MPM Conductor</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2264%22%20height%3D%2264%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2216%22%20fill%3D%22%232563eb%22/%3E%3Cg%20transform%3D%22translate%2810%2C10%29%22%3E%3Csvg%20width%3D%2244%22%20height%3D%2244%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M12%2012c-2-2.5-4-4-6-4a4%204%200%200%200%200%208c2%200%204-1.5%206-4z%22/%3E%3Cpath%20d%3D%22M12%2012c2%202.5%204%204%206%204a4%204%200%200%200%200-8c-2%200-4%201.5-6%204z%22/%3E%3C/svg%3E%3C/g%3E%3C/svg%3E"/>
+<script>
+  // Apply the saved theme before anything paints (no white flash in dark mode).
+  (function(){
+    var pref="light";try{pref=localStorage.getItem("cond_theme")||"light";}catch(e){}
+    var dark=pref==="dark"||(pref==="system"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.setAttribute("data-theme",dark?"dark":"light");
+  })();
+</script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<link rel="stylesheet" href="/static/app/styles.css?v=2026.11.06"/>
+</head>
+<body>
+<div id="root"><div class="boot"><div class="spinner" style="width:26px;height:26px"></div></div></div>
+<!-- Order matters: each file uses components defined by the files above it. -->
+<script type="text/babel" data-presets="react" src="/static/app/core.jsx?v=2026.11.06"></script>
+<script type="text/babel" data-presets="react" src="/static/app/charts.jsx?v=2026.11.06"></script>
+<script type="text/babel" data-presets="react" src="/static/app/forms.jsx?v=2026.11.06"></script>
+<script type="text/babel" data-presets="react" src="/static/app/login.jsx?v=2026.11.06"></script>
+<script type="text/babel" data-presets="react" src="/static/app/layout.jsx?v=2026.11.06"></script>
+<script type="text/babel" data-presets="react" src="/static/app/overview.jsx?v=2026.11.06"></script>
+<script type="text/babel" data-presets="react" src="/static/app/library.jsx?v=2026.11.06"></script>
+<script type="text/babel" data-presets="react" src="/static/app/schedules.jsx?v=2026.11.06"></script>
+<script type="text/babel" data-presets="react" src="/static/app/workspace.jsx?v=2026.11.06"></script>
+<script type="text/babel" data-presets="react" src="/static/app/app.jsx?v=2026.11.06"></script>
+</body>
+</html>

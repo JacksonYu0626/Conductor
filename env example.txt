@@ -1,0 +1,42 @@
+# ─── App ──────────────────────────────────────────────────────────────────────
+APP_SECRET_KEY=
+# DB_PATH=
+# DEV_MODE=false
+
+# ─── Global Security ──────────────────────────────────────────────────────────
+# Switch to production URL when ready (remove the -test part)
+GS_BASE_URL=
+GS_APP_ID=
+
+# ─── Tableau Server ───────────────────────────────────────────────────────────
+TSC_SERVER_URL=
+TSC_SITE_ID=
+# Note for IT: Create a new Tableau credential when deploying into production
+TSC_PAT_NAME=
+TSC_PAT_SECRET=""
+TSC_API_VERSION=3.19
+
+# ─── MSSQL (for company employee search in email picker) ──────────────────────
+MSSQL_SERVER=
+MSSQL_DATABASE=
+MSSQL_DRIVER={ODBC Driver 17 for SQL Server}
+
+# ─── Conductor DB (production SQL Server) ─────────────────────────────────────
+CONDUCTOR_DB_SERVER=
+CONDUCTOR_DB_DATABASE=
+CONDUCTOR_DB_SCHEMA=
+CONDUCTOR_DB_DRIVER=ODBC Driver 17 for SQL Server
+ 
+# ─── SharePoint Credential for internal site ───────────────────────────────────
+SHAREPOINT_TENANT_ID=
+SHAREPOINT_CLIENT_ID=
+SHAREPOINT_CLIENT_SECRET=
+
+# ─── Emailing systen using Graph API ───────────────────────────────────────────
+# Note for IT: please get secret from Dashlane after deploying to production
+EMAIL_TENANT_ID=
+EMAIL_CLIENT_ID=
+EMAIL_CLIENT_SECRET=
+EMAIL_SENDER=
+CONDUCTOR_SUMMARY_CACHE_SECONDS=300
+CONDUCTOR_ANALYTICS_CACHE_SECONDS=300
